@@ -1,26 +1,38 @@
 package org.example.modelPackage;
 
-@Table
-public class Student {
+import javax.persistence.*;
 
-        @Column
+@Entity
+@Table
+public class Student{
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private long id;
+
         private String first_name;
 
-        @Column
         private String last_name;
 
-        @Column
         private Byte age;
 
         public Student() {
         }
 
-        public Student( String first_name, String last_name, Byte age) {
+        public Student(  long id, String first_name, String last_name, Byte age) {
+            this.id=id;
+
             this.first_name = first_name;
             this.last_name = last_name;
             this.age = age;
         }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId(long aLong) {
+        return id;
+    }
     public String getFirst_name(String first_name) {
         return this.first_name;
     }
@@ -53,4 +65,5 @@ public class Student {
                 ", age=" + age +
                 '}';
     }
+
 }

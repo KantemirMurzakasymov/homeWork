@@ -13,7 +13,7 @@ import java.util.List;
 public class UserServiceImplement implements UserService{
 
         public void createUsersTable() {
-                        String query = " CREATE TABLE if NOT EXISTS student (id BIGINT PRIMARY KEY, first_name VARCHAR(20) NOT NULL,last_name VARCHAR(20) NOT NULL,age int )";
+                        String query = " CREATE TABLE students ( id integer , first_name VARCHAR(20) NOT NULL,last_name VARCHAR(20) NOT NULL,age int )";
 
                         try {
                                 Statement statement = JDBConnector.connection().createStatement();
@@ -36,13 +36,13 @@ public class UserServiceImplement implements UserService{
                 }
         }
 
-        public void saveUser(String name, String lastName, byte age) {
+        public void saveUser(String name, String lastName, byte age, long id) {
                 String query = "INSERT INTO student(first_name,last_name,age)VALUES(?,?,?)";
                 try (PreparedStatement preparedStatement = JDBConnector.connection().prepareStatement(query)) {
-                        //preparedStatement.setLong(1, id);
-                        preparedStatement.setString(1, name);
-                        preparedStatement.setString(2, lastName);
-                        preparedStatement.setByte(3, age);
+                        preparedStatement.setLong(1, id);
+                        preparedStatement.setString(2, name);
+                        preparedStatement.setString(3, lastName);
+                        preparedStatement.setByte(4, age);
                         preparedStatement.execute();
 
                 } catch (SQLException e) {
@@ -52,19 +52,22 @@ public class UserServiceImplement implements UserService{
         }
 
         @Override
-        public void removeUserByNmae(String name) {
-                String sql = "DELETE FROM student WHERE first_name = ?";
+        public void removeUserById(long id) {
+                String sql = "DELETE FROM student WHERE id = ?";
                 try {
                         PreparedStatement statement = JDBConnector.connection().prepareStatement(sql);
-                        statement.setString(1, name);
+                        statement.setString(1, String.valueOf(id));
 
                         int rowsDeleted = statement.executeUpdate();
                         if (rowsDeleted > 0)
-                                System.out.println("A user was deleted successfully!" + name);
+                                System.out.println("A user was deleted successfully!" + id);
                 } catch (SQLException e) {
                         System.out.println(e.getMessage());
                 }
+
         }
+
+
         public List<Student> getAllUsers() {
                 String qery = "SELECT * FROM student;";
 
@@ -73,7 +76,7 @@ public class UserServiceImplement implements UserService{
                         ResultSet resultSet = statement.executeQuery(qery);
                         while (resultSet.next()) {
                                 Student student = new Student();
-                                //student.getId(resultSet.getLong(1));
+                                student.getId(resultSet.getLong(1));
                                 student.getFirst_name(resultSet.getString("first_name"));
                                 student.getLast_name(resultSet.getString("last_name"));
                                 student.getAge(resultSet.getByte(3));

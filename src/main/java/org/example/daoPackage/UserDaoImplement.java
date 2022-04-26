@@ -22,14 +22,15 @@ public class UserDaoImplement implements UserDao{
         }
 
         @Override
-        public void saveUser(String name, String lastName, byte age) {
+        public void saveUser(String name, String lastName, byte age, long id) {
 
         }
 
         @Override
-        public void removeUserByName(String name) {
+        public void removeUserById(long id) {
 
         }
+
 
         @Override
         public List<Student> getAllUsers() {

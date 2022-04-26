@@ -10,9 +10,10 @@ public interface UserDao {
 
         void dropUsersTable();
 
-        void saveUser(String name, String lastName, byte age);
+        void saveUser(String name, String lastName, byte age, long id);
 
-        void removeUserByName(String name);
+        void removeUserById(long id);
+
 
         List<Student> getAllUsers();
 

@@ -28,6 +28,12 @@
       <version>42.3.3</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>5.6.7.Final</version>
+    </dependency>
 
 
 
@@ -87,6 +93,7 @@
       </plugins>
     </pluginManagement>
       <plugins>
+
           <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-compiler-plugin</artifactId>
