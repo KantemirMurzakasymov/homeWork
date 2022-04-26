@@ -37,7 +37,7 @@ public class UserServiceImplement implements UserService{
         }
 
         public void saveUser(String name, String lastName, byte age, long id) {
-                String query = "INSERT INTO student(first_name,last_name,age)VALUES(?,?,?)";
+                String query = "INSERT INTO student(first_name,last_name,age)VALUES(?,?,?,?)";
                 try (PreparedStatement preparedStatement = JDBConnector.connection().prepareStatement(query)) {
                         preparedStatement.setLong(1, id);
                         preparedStatement.setString(2, name);

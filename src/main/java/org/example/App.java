@@ -9,7 +9,7 @@ public class App {
         JDBConnector.connection();
         UserDaoJDBC dao = new UserDaoJDBC();
 
-        //dao.createUsersTable();
+        dao.createUsersTable();
 
 //        dao.saveUser("Omke","Babanov", (byte) 22,1);
 //        dao.saveUser("Arzibek","Almash", (byte) 43,2);
